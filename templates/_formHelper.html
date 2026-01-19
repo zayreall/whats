@@ -1,0 +1,28 @@
+<!-- Form Helper Partial -->
+<div class="row g-3 mb-3">
+
+  <!-- Name Field -->
+  <div class="col-md-6">
+    <label for="name" class="form-label">{{ form.name.label }}</label>
+    {{ form.name(class="form-control", id="name", placeholder="Enter full name") }}
+
+    {% if form.name.errors %}
+      <div class="text-danger mt-1 small">
+        {{ form.name.errors[0] }}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Email Field -->
+  <div class="col-md-6">
+    <label for="email" class="form-label">{{ form.email.label }}</label>
+    {{ form.email(class="form-control", id="email", placeholder="Enter email address") }}
+
+    {% if form.email.errors %}
+      <div class="text-danger mt-1 small">
+        {{ form.email.errors[0] }}
+      </div>
+    {% endif %}
+  </div>
+
+</div>

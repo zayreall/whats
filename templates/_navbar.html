@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="nav-link" href="{{ url_for('faq.home') }}">
+      <i class="bi bi-whatsapp"></i> Whatsup App
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('faq.list_faqs') }}">
+            <i class="bi bi-card-list"></i> FAQ Knowledge Base
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('faq.create_faq') }}">
+            <i class="bi bi-plus-circle"></i> Create FAQ
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+

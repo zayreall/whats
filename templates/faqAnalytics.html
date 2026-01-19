@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-sm p-4">
+    <h3 class="mb-4">📊 FAQ Analytics</h3>
+
+    <div class="row g-4">
+      <!-- Total FAQs -->
+      <div class="col-md-4">
+        <div class="bg-light border rounded-3 p-3 text-center">
+          <h6 class="text-muted mb-2">Total FAQs</h6>
+          <p class="display-6 fw-bold">{{ total }}</p>
+        </div>
+      </div>
+
+      <!-- Published FAQs -->
+      <div class="col-md-4">
+        <div class="bg-light border rounded-3 p-3 text-center">
+          <h6 class="text-muted mb-2">Published</h6>
+          <p class="display-6 fw-bold text-success">{{ published }}</p>
+        </div>
+      </div>
+
+      <!-- Draft FAQs -->
+      <div class="col-md-4">
+        <div class="bg-light border rounded-3 p-3 text-center">
+          <h6 class="text-muted mb-2">Drafts</h6>
+          <p class="display-6 fw-bold text-secondary">{{ draft }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 text-end">
+      <a href="{{ url_for('faq.list_faqs') }}" class="btn btn-outline-dark">
+        ← Back to FAQ List
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

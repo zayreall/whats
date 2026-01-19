@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WHATSUP APP</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  >
+
+  <!-- Team UI Style Guide -->
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 0.9rem;
+      background-color: #f4f6f9;
+      color: #111827;
+    }
+
+    .navbar {
+      background-color: #e5e7eb;
+      border-bottom: 1px solid #d1d5db;
+    }
+
+    .nav-link {
+      color: #111827;
+      padding: 6px 12px;
+    }
+
+    .nav-link:hover {
+      background-color: #d1d5db;
+      border-radius: 5px;
+    }
+
+    h3 {
+      font-weight: 700;
+    }
+
+    h6 {
+      font-weight: 600;
+    }
+
+    .text-muted {
+      font-size: 0.85rem;
+      color: #6b7280 !important;
+    }
+  </style>
+
+  <!-- Optional external CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <!-- BRAND -->
+      <a class="navbar-brand fw-bold" href="{{ url_for('faq.home') }}">
+        <i class="bi bi-whatsapp"></i> WHATSUP APP
+      </a>
+
+      <!-- TOGGLER -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- NAV LINKS -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('faq.list_faqs') }}">
+              <i class="bi bi-card-list"></i> FAQ Knowledge Base
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('faq.create_faq') }}">
+              <i class="bi bi-plus-circle"></i> Create FAQ
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('faq.faq_analytics') }}">
+              <i class="bi bi-bar-chart"></i> Analytics
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <main class="container my-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
