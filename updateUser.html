@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Update User{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+
+<div class="card shadow-sm p-3 mb-3">
+    <h3 class="page-title mb-0">Update User</h3>
+    <p class="muted-text mb-0">Editing User ID: {{ user.get_user_id() }}</p>
+</div>
+
+<div class="card shadow-sm p-3">
+    <form method="POST" action="">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ render_field(form.first_name, class="form-control") }}
+            </div>
+            <div class="form-group col-md-6">
+                {{ render_field(form.last_name, class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ render_field(form.gender, class="form-control") }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ render_field(form.membership, class="form-control") }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ render_field(form.status, class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ render_field(form.remarks, class="form-control", rows="3") }}
+        </div>
+
+        <button type="submit" class="btn btn-dark">Update</button>
+        <a href="/retrieveUsers" class="btn btn-outline-dark">Cancel</a>
+    </form>
+</div>
+{% endblock %}

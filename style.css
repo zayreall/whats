@@ -1,0 +1,52 @@
+/* Team UI Style Guide */
+:root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --sidebar: #e5e7eb;
+    --border: #d1d5db;
+    --text: #111827;
+    --muted: #6b7280;
+    --hover: #d1d5db;
+}
+
+* {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.page-title {
+    font-weight: 700;
+    /* h3 weight */
+}
+
+.section-title {
+    font-weight: 600;
+    /* h6 weight */
+}
+
+.body-text {
+    font-size: 0.9rem;
+}
+
+.muted-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+}
+
+.table-hover tbody tr:hover {
+    background: var(--hover);
+}
+
+.sidebar {
+    background: var(--sidebar);
+    border-right: 1px solid var(--border);
+}
