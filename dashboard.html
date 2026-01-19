@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h3 class="mb-4">Analytics Dashboard</h3>
+
+<!-- KPI CARDS -->
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card shadow-sm p-3">
+      <div class="text-muted">Total Users</div>
+      <div style="font-size: 2rem; font-weight:700;">
+        {{ stats.total_users }}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow-sm p-3">
+      <div class="text-muted">Active Users</div>
+      <div style="font-size: 2rem; font-weight:700;">
+        {{ stats.active_users }}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow-sm p-3">
+      <div class="text-muted">Roles Configured</div>
+      <div style="font-size: 2rem; font-weight:700;">
+        {{ stats.roles }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- USER ACTIVITY OVERVIEW -->
+<div class="row g-3">
+  <div class="col-md-8">
+    <div class="card shadow-sm p-3">
+      <h6 class="mb-3">User Activity Overview</h6>
+
+      <img
+        src="{{ url_for('static', filename='img/user_activity_overview.png') }}"
+        class="img-fluid rounded border"
+        alt="User Activity Overview Chart"
+      >
+
+      <small class="text-muted d-block mt-2">
+        Overview of system usage and user activity trends
+      </small>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow-sm p-3">
+      <h6 class="mb-3">Quick Actions</h6>
+      <a href="/users" class="btn btn-dark w-100 mb-2">
+        Manage Users
+      </a>
+      <a href="/audit" class="btn btn-outline-dark w-100">
+        View Audit Logs
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

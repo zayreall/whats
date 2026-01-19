@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Roles{% endblock %}
+
+{% block content %}
+<h3>Role Management</h3>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<table class="table table-hover">
+<thead>
+<tr>
+  <th>Role Name</th><th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for r in roles %}
+<tr>
+  <td>{{ r.role_name }}</td>
+  <td>
+    <button class="btn btn-sm btn-outline-dark"
+      data-bs-toggle="modal"
+      data-bs-target="#editRole{{ r.role_id }}">
+      Edit
+    </button>
+  </td>
+</tr>
+
+<div class="modal fade" id="editRole{{ r.role_id }}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST">
+        <div class="modal-header">
+          <h5>Edit Role</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="role_id" value="{{ r.role_id }}">
+          <input class="form-control" name="role_name" value="{{ r.role_name }}">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-dark">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

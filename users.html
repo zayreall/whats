@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}Team Management{% endblock %}
+
+{% block content %}
+<h3 class="mb-3">Team Management</h3>
+
+<!-- SEARCH / FILTER -->
+<form class="row g-2 mb-3" method="GET" action="/users">
+  <div class="col-md-4">
+    <input class="form-control"
+           name="q"
+           placeholder="Search name or email"
+           value="{{ request.args.get('q','') }}">
+  </div>
+
+  <div class="col-md-3">
+    <select class="form-select" name="role">
+      <option value="">All Roles</option>
+      {% for r in roles %}
+        <option value="{{ r.role_name }}"
+          {% if request.args.get('role','') == r.role_name %}selected{% endif %}>
+          {{ r.role_name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <button class="btn btn-outline-dark w-100">Apply</button>
+  </div>
+
+  <div class="col-md-3 text-end">
+    <a href="/users" class="btn btn-light w-100">Reset</a>
+  </div>
+</form>
+
+<!-- ADD USER -->
+<div class="card shadow-sm p-3 mb-4">
+  <h6 class="mb-3">Add User</h6>
+
+  <form class="row g-2" method="POST" action="/add_user">
+    <div class="col-md-4">
+      <input class="form-control" name="name" placeholder="Full name" required>
+    </div>
+
+    <div class="col-md-4">
+      <input class="form-control" type="email" name="email" placeholder="Work email" required>
+    </div>
+
+    <div class="col-md-3">
+      <select class="form-select" name="role_id" required>
+        {% for r in roles %}
+          <option value="{{ r.role_id }}">{{ r.role_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-md-1">
+      <button class="btn btn-dark w-100">+</button>
+    </div>
+  </form>
+</div>
+
+<!-- USERS TABLE -->
+{% if users|length == 0 %}
+  <div class="alert alert-info">
+    No users found.
+  </div>
+{% else %}
+<div class="card shadow-sm">
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Last Login</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for u in users %}
+        <tr>
+          <td>{{ u.name }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.role_name }}</td>
+
+          <td>
+            {% if u.status == "Active" %}
+              <span class="badge bg-success">Active</span>
+            {% else %}
+              <span class="badge bg-secondary">Inactive</span>
+            {% endif %}
+          </td>
+
+          <td>{{ u.last_login if u.last_login else "Never" }}</td>
+
+          <td class="text-end">
+            <form method="POST"
+                  action="/update_user_role/{{ u.user_id }}"
+                  class="d-inline">
+              <select name="role_id"
+                      class="form-select form-select-sm d-inline w-auto">
+                {% for r in roles %}
+                  <option value="{{ r.role_id }}"
+                    {% if r.role_id == u.role_id %}selected{% endif %}>
+                    {{ r.role_name }}
+                  </option>
+                {% endfor %}
+              </select>
+              <button class="btn btn-sm btn-outline-dark">Save</button>
+            </form>
+
+            <a href="/deactivate_user/{{ u.user_id }}"
+               class="btn btn-sm btn-warning">
+              Deactivate
+            </a>
+
+            <a href="/delete_user/{{ u.user_id }}"
+               class="btn btn-sm btn-danger">
+              Delete
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

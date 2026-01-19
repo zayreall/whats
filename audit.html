@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Audit Logs{% endblock %}
+
+{% block content %}
+<h3 class="mb-3">Audit Logs</h3>
+
+{% if logs|length == 0 %}
+  <div class="alert alert-info">No audit logs yet.</div>
+{% else %}
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-striped mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Action</th>
+            <th>Target</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for log in logs %}
+          <tr>
+            <td>{{ log.action }}</td>
+            <td>{{ log.target }}</td>
+            <td>{{ log.timestamp }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
